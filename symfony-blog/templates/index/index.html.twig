@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accueil</h1>
+    <p><a href="{{ path('app_index_faq') }}">F.A.Q</a></p>
+    <p>Liste des articles:</p>
+    <ul>
+    {% for articles in article %}
+        <li><a href="{{ path('app_article_index', {'id': articles.id}) }}">{{ articles.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

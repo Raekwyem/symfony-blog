@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gestion catégories</h1>
+
+    <p><a href="{{ path('app_admincategory_edit') }}" class="btn btn-primary">Ajouter une catégorie</a></p>
+
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <th scope="row">{{ category.id }}</th>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <a href="{{ path('app_admincategory_edit', {'id': category.id}) }}" class="btn btn-primary">
+                        Modifier
+                    </a>
+                </td>
+                <td>
+                    {% if category.articles.empty %}
+                    <a href="{{ path('app_admincategory_delete', {'id': category.id}) }}" class="btn btn-danger">
+                        Supprimer
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

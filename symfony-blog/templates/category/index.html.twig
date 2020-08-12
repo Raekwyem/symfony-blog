@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ category.name }}</h1>
+
+    {% if category.description is not null %}
+        <p>{{ category.description }}</p>
+    {% endif %}
+
+    <p>Liste des films d'action:</p>
+
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date de sortie</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for articles in article %}
+        <tr>
+            <th scope="row">{{ articles.id }}</th>
+            <td>{{ articles.title }}</td>
+            <td>{{ articles.content }}</td>
+            <td>{{ articles.publicationDate.format('d M Y') }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

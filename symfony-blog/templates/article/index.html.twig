@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <em>
+        Dans <a href="{{ path('app_category_index', {'id': article.category.id}) }}">{{ article.category.name }}</a>, {# lorsque l'on veut faire appel à un champ via une autre table #}
+        le {{ article.publicationDate.format('d M Y') }} {# autre possibilité avec twig: {{ article.publicationDate|date('d M Y') }} #}
+    </em>
+
+    <p>{{ article.content }}</p> {# {{ article.content|nl2br }} : filtre qui applique le saut de ligne lorsqu'une mise en forme a été faite sur la bdd #}
+{% endblock %}
